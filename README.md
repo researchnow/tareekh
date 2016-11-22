@@ -4,6 +4,13 @@ Tareekh is a GoLang library to make it a little bit easy to work with dates. Thi
 
 This was originally written to help with writing Alexa custom skills.
 
+## Time zone
+By default the Local timezone is used. But if you want to specify a particular timezone, just do:
+
+```go
+tareekh.TimeZone = "America/New_York" //EST
+```
+
 ## Examples
 
 ##### Yesterday
