@@ -8,18 +8,39 @@ import (
 
 //TestFromDateString
 func TestFromDateString(t *testing.T) {
-	dt, err := tareekh.FromDateString("2016-11-22")
-	if err != nil {
-		t.FailNow()
-	}
+	dt, _ := tareekh.FromDateString("2016-11-22")
 	if tareekh.ToShortDate(dt) != "2016-11-22" {
 		t.FailNow()
 	}
 
-	_, err = tareekh.FromDateString("2016-11-22x")
-	if err == nil {
-		t.FailNow()
+	tests := []struct {
+		Date  string
+		Valid bool
+	}{{
+		Date:  "2016-11-22x",
+		Valid: false,
+	}, {
+		Date:  "2016-11",
+		Valid: false,
+	}, {
+		Date:  "",
+		Valid: false,
+	}, {
+		Date:  "2016-11-22",
+		Valid: true,
+	}}
+
+	for _, tt := range tests {
+		_, err := tareekh.FromDateString(tt.Date)
+		if tt.Valid && err != nil {
+			t.FailNow()
+		}
+
+		if !tt.Valid && err == nil {
+			t.FailNow()
+		}
 	}
+
 }
 
 //TestIsDateInFuture
