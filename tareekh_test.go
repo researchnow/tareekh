@@ -53,3 +53,27 @@ func TestIsDateInFuture(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+//TestFromDayOfMonth
+func TestFromDayOfMonth(t *testing.T) {
+	day := 2
+	tnow := tareekh.Now()
+	dm := tareekh.FromDayOfMonth(day)
+	if dm.Month() != tnow.Month() || dm.Year() != tnow.Year() || dm.Day() != day {
+		t.FailNow()
+	}
+}
+
+//TestBeginningOfMonth
+func TestBeginningOfMonth(t *testing.T) {
+	if tareekh.BeginningOfMonth().Day() != 1 {
+		t.FailNow()
+	}
+}
+
+//TestEndOfMonth
+func TestEndOfMonth(t *testing.T) {
+	if tareekh.EndOfMonth().Day() < tareekh.LeastPossibleDays {
+		t.FailNow()
+	}
+}
