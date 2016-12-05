@@ -46,6 +46,22 @@ isit := tareekh.IsDateInFuture(future)
 fmt.Println(isit) //should be true
 ```
 
+##### BeginningOfMonth
+```go
+begin := tareekh.BeginningOfMonth() //first of current month
+```
+
+##### EndOfMonth
+```go
+end := tareekh.EndOfMonth() //last day of current month
+```
+
+##### FromDayOfMonth
+```go
+dayx := tareekh.FromDayOfMonth(1) //specified day of current month
+```
+
+
 ## Status
 
 In development, if there's other useful stuff feel free to fork and issue a pull request.
