@@ -27,7 +27,7 @@ func Now() time.Time {
 	return time.Now()
 }
 
-// Today returns the current time
+// Today returns the current time.
 func Today() time.Time {
 	return Now()
 }
