@@ -1,6 +1,7 @@
 package tareekh_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/peanut-labs/tareekh"
@@ -43,7 +44,7 @@ func TestFromDateString(t *testing.T) {
 
 }
 
-//TestIsDateInFuture
+// TestIsDateInFuture
 func TestIsDateInFuture(t *testing.T) {
 	if tareekh.IsDateInFuture(tareekh.Now().AddDate(0, 0, -1)) {
 		t.FailNow()
@@ -54,7 +55,7 @@ func TestIsDateInFuture(t *testing.T) {
 	}
 }
 
-//TestFromDayOfMonth
+// TestFromDayOfMonth
 func TestFromDayOfMonth(t *testing.T) {
 	day := 2
 	tnow := tareekh.Now()
@@ -64,16 +65,35 @@ func TestFromDayOfMonth(t *testing.T) {
 	}
 }
 
-//TestBeginningOfMonth
+// TestBeginningOfMonth
 func TestBeginningOfMonth(t *testing.T) {
 	if tareekh.BeginningOfMonth().Day() != 1 {
 		t.FailNow()
 	}
 }
 
-//TestEndOfMonth
+// TestEndOfMonth
 func TestEndOfMonth(t *testing.T) {
 	if tareekh.EndOfMonth().Day() < tareekh.LeastPossibleDays {
+		t.FailNow()
+	}
+}
+
+// TestDaysAgo
+func TestDaysAgo(t *testing.T) {
+	today := tareekh.Today()
+	days := tareekh.DaysAgo(6)
+	diff := today.Day() - days.Day()
+	if diff != 6 {
+		t.FailNow()
+	}
+}
+
+// TestBeginningOfDay
+func TestBeginningOfDay(t *testing.T) {
+	begin := tareekh.BeginningOfDay(tareekh.Now())
+	ft := fmt.Sprintf("%d:%d:%d", begin.Hour(), begin.Minute(), begin.Second())
+	if ft != "0:0:0" {
 		t.FailNow()
 	}
 }

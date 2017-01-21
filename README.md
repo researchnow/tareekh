@@ -1,8 +1,8 @@
 # Tareekh
+[![Build Status](https://travis-ci.org/peanut-labs/tareekh.svg?branch=master)](https://travis-ci.org/peanut-labs/tareekh)
+[![GoDoc](https://godoc.org/github.com/peanut-labs/tareekh?status.svg)](https://godoc.org/github.com/peanut-labs/tareekh)
 
-Tareekh is a GoLang library to make it a little bit easy to work with dates. This is highly specific to PL related stuff, so there's a lot of assumptions made about default date format etc. (YYYY-MM-DD).
-
-This was originally written to help with writing Alexa custom skills.
+Tareekh is a GoLang library to make it a little bit easy to work with dates. This was written to avoid reimplementing common functionality working with `time.Time`. 
 
 ## Time zone
 By default the Local timezone is used. But if you want to specify a particular timezone, just do:

@@ -1,3 +1,5 @@
+// Package tareekh is a small wrapper which provides functionality making it
+// easy to work with time.Time by implementing commonly used methods
 package tareekh
 
 import (
@@ -5,15 +7,18 @@ import (
 	"time"
 )
 
+// TimeZone uses whichever is the default unless specified
 var TimeZone = ""
 
 const (
+	// LeastPossibleDays in a month
 	LeastPossibleDays = 28
 
+	// DefaultDateFormat is the golang date format used by default
 	DefaultDateFormat = "2006-01-02"
 )
 
-// Now
+// Now returns time.Now() and is timezone aware
 func Now() time.Time {
 	if TimeZone != "" {
 		loc, _ := time.LoadLocation(TimeZone)
@@ -27,9 +32,9 @@ func Today() time.Time {
 	return Now()
 }
 
-// Yestrday returns time object set to yesterdays (-1 Day)
+// Yesterday returns time object set to yesterdays (-1 Day)
 func Yesterday() time.Time {
-	return Today().AddDate(0, 0, -1)
+	return DaysAgo(1)
 }
 
 // BeginningOfMonth returns time object set to first day of current month
@@ -40,6 +45,11 @@ func BeginningOfMonth() time.Time {
 // EndOfMonth return time object set to last day of current month
 func EndOfMonth() time.Time {
 	return BeginningOfMonth().AddDate(0, 1, -1)
+}
+
+// DaysAgo returns time for specified number of days back
+func DaysAgo(days int) time.Time {
+	return Today().AddDate(0, 0, -1*days)
 }
 
 // FromDayOfMonth return time object set to specified day of the current month
@@ -67,4 +77,12 @@ func FromDateString(dt string) (time.Time, error) {
 // IsDateInFuture returns true if the date is in future
 func IsDateInFuture(t time.Time) bool {
 	return Now().Sub(t).Hours() < 0
+}
+
+// BeginningOfDay resets the time to 00:00:00 while keeping date intact
+func BeginningOfDay(t time.Time) time.Time {
+	hour := time.Duration(t.Hour()) * time.Hour
+	min := time.Duration(t.Minute()) * time.Minute
+	sec := time.Duration(t.Second()) * time.Second
+	return t.Add(-1 * (hour + min + sec))
 }
