@@ -115,7 +115,7 @@ func TestDifferenceInDays(t *testing.T) {
 	}
 
 	days := tareekh.DifferenceInDays(then, now)
-	fmt.Println(days)
+
 	if days != 2 {
 		t.FailNow()
 	}
