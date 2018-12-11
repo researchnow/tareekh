@@ -86,3 +86,9 @@ func BeginningOfDay(t time.Time) time.Time {
 	sec := time.Duration(t.Second()) * time.Second
 	return t.Add(-1 * (hour + min + sec))
 }
+
+// DifferenceInDays returns the number of days between two given dates.
+func DifferenceInDays(then, now time.Time) int {
+	diff := now.Sub(then)
+	return int(diff.Hours() / 24)
+}

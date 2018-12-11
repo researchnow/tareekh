@@ -3,8 +3,9 @@ package tareekh_test
 import (
 	"fmt"
 	"testing"
+	"time"
 
-	"github.com/peanut-labs/tareekh"
+	"github.com/researchnow/tareekh"
 )
 
 //TestFromDateString
@@ -94,6 +95,28 @@ func TestBeginningOfDay(t *testing.T) {
 	begin := tareekh.BeginningOfDay(tareekh.Now())
 	ft := fmt.Sprintf("%d:%d:%d", begin.Hour(), begin.Minute(), begin.Second())
 	if ft != "0:0:0" {
+		t.FailNow()
+	}
+}
+
+// TestDifferenceInDays
+
+func TestDifferenceInDays(t *testing.T) {
+	format := "2006-01-02T15:04:05.000"
+	then, err := time.Parse(format, "2016-12-16T00:14:46.000")
+	if err != nil {
+		fmt.Println(err)
+		t.FailNow()
+	}
+
+	now, err := time.Parse(format, "2016-12-18T00:14:46.000")
+	if err != nil {
+		t.FailNow()
+	}
+
+	days := tareekh.DifferenceInDays(then, now)
+
+	if days != 2 {
 		t.FailNow()
 	}
 }
