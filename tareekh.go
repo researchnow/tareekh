@@ -4,6 +4,7 @@ package tareekh
 
 import (
 	"fmt"
+	"math"
 	"time"
 )
 
@@ -91,4 +92,15 @@ func BeginningOfDay(t time.Time) time.Time {
 func DifferenceInDays(then, now time.Time) int {
 	diff := now.Sub(then)
 	return int(diff.Hours() / 24)
+}
+
+// DifferenceInSeconds returns the number of seconds between two given dates.
+func DifferenceInSeconds(then, now time.Time) int {
+	diff := now.Sub(then)
+	return int(math.Round(diff.Seconds()))
+}
+
+// Format returns the time in string format.
+func Format(t time.Time) string {
+	return t.Format("2006/01/02 15:04:05")
 }
