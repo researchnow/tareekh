@@ -120,3 +120,63 @@ func TestDifferenceInDays(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+// TestBeginningOfMonthForInput
+func TestBeginningOfMonthForInput(t *testing.T) {
+	tests := []struct {
+		Input    string
+		Expected string
+	}{{
+		Input:    "2019-11-22T00:14:46.000",
+		Expected: "2019/11/01 00:00:00",
+	}, {
+		Input:    "2000-01-01T00:14:46.000",
+		Expected: "2000/01/01 00:00:00",
+	}, {
+		Input:    "0000-01-01T00:00:00.000",
+		Expected: "0000/01/01 00:00:00",
+	}}
+	for _, tt := range tests {
+		format := "2006-01-02T15:04:05.000"
+		input, err := time.Parse(format, tt.Input)
+		if err != nil {
+			t.Error(err)
+			t.FailNow()
+		}
+		actual := tareekh.ExtractBeginningOfMonth(input)
+		if actual.Format("2006/01/02 15:04:05") != tt.Expected {
+			t.Errorf("expected: %s, got: %s", tt.Expected, actual.Format("2006/01/02 15:04:05"))
+			t.Fail()
+		}
+	}
+}
+
+// TestEndOfMonthForInput
+func TestEndOfMonthForInput(t *testing.T) {
+	tests := []struct {
+		Input    string
+		Expected string
+	}{{
+		Input:    "2019-11-22T00:14:46.000",
+		Expected: "2019/11/30 23:59:59",
+	}, {
+		Input:    "2000-01-01T00:14:46.000",
+		Expected: "2000/01/31 23:59:59",
+	}, {
+		Input:    "0000-01-01T00:00:00.000",
+		Expected: "0000/01/31 23:59:59",
+	}}
+	for _, tt := range tests {
+		format := "2006-01-02T15:04:05.000"
+		input, err := time.Parse(format, tt.Input)
+		if err != nil {
+			t.Error(err)
+			t.FailNow()
+		}
+		actual := tareekh.ExtractEndOfMonth(input)
+		if actual.Format("2006/01/02 15:04:05") != tt.Expected {
+			t.Errorf("expected: %s, got: %s", tt.Expected, actual.Format("2006/01/02 15:04:05"))
+			t.Fail()
+		}
+	}
+}
