@@ -143,7 +143,7 @@ func TestBeginningOfMonthForInput(t *testing.T) {
 			t.Error(err)
 			t.FailNow()
 		}
-		actual := tareekh.BeginningOfMonthForInput(input)
+		actual := tareekh.ExtractBeginningOfMonth(input)
 		if actual.Format("2006/01/02 15:04:05") != tt.Expected {
 			t.Errorf("expected: %s, got: %s", tt.Expected, actual.Format("2006/01/02 15:04:05"))
 			t.Fail()
@@ -173,7 +173,7 @@ func TestEndOfMonthForInput(t *testing.T) {
 			t.Error(err)
 			t.FailNow()
 		}
-		actual := tareekh.EndOfMonthForInput(input)
+		actual := tareekh.ExtractEndOfMonth(input)
 		if actual.Format("2006/01/02 15:04:05") != tt.Expected {
 			t.Errorf("expected: %s, got: %s", tt.Expected, actual.Format("2006/01/02 15:04:05"))
 			t.Fail()

@@ -105,13 +105,13 @@ func Format(t time.Time) string {
 	return t.Format("2006/01/02 15:04:05")
 }
 
-// BeginningOfMonthForInput ...
-func BeginningOfMonthForInput(t time.Time) time.Time {
+// ExtractBeginningOfMonth ...
+func ExtractBeginningOfMonth(t time.Time) time.Time {
 	return time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, time.Local)
 }
 
-// EndOfMonthForInput ...
-func EndOfMonthForInput(t time.Time) time.Time {
+// ExtractEndOfMonth ...
+func ExtractEndOfMonth(t time.Time) time.Time {
 	firstday := time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, time.Local)
 	lastday := firstday.AddDate(0, 1, 0).Add(time.Nanosecond * -1)
 	return lastday
