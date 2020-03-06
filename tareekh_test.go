@@ -121,8 +121,8 @@ func TestDifferenceInDays(t *testing.T) {
 	}
 }
 
-// TestBeginningOfMonthForInput
-func TestBeginningOfMonthForInput(t *testing.T) {
+// TestExtractBeginningOfMonth
+func TestExtractBeginningOfMonth(t *testing.T) {
 	tests := []struct {
 		Input    string
 		Expected string
@@ -151,8 +151,8 @@ func TestBeginningOfMonthForInput(t *testing.T) {
 	}
 }
 
-// TestEndOfMonthForInput
-func TestEndOfMonthForInput(t *testing.T) {
+// TestExtractEndOfMonth
+func TestExtractEndOfMonth(t *testing.T) {
 	tests := []struct {
 		Input    string
 		Expected string

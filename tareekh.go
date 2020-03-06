@@ -105,12 +105,12 @@ func Format(t time.Time) string {
 	return t.Format("2006/01/02 15:04:05")
 }
 
-// ExtractBeginningOfMonth ...
+// ExtractBeginningOfMonth ... extract the beginning of the month for the input time. Example: '01/19/2020 10:00:00' is given in the input, output would be '01/01/2020 00:00:00'
 func ExtractBeginningOfMonth(t time.Time) time.Time {
 	return time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, time.Local)
 }
 
-// ExtractEndOfMonth ...
+// ExtractEndOfMonth ... extract the ending of the month for the input time. Example: '01/31/2020 23:59:59' is given in the input, output would be '01/01/2020 00:00:00'
 func ExtractEndOfMonth(t time.Time) time.Time {
 	firstday := time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, time.Local)
 	lastday := firstday.AddDate(0, 1, 0).Add(time.Nanosecond * -1)
