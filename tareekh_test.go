@@ -45,6 +45,17 @@ func TestFromDateString(t *testing.T) {
 
 }
 
+// TestIsDateInPast
+func TestIsDateInPast(t *testing.T) {
+	if tareekh.IsDateInPast(tareekh.Now().AddDate(0, 0, 1)) {
+		t.FailNow()
+	}
+
+	if !tareekh.IsDateInPast(tareekh.Now().AddDate(0, 0, -1)) {
+		t.FailNow()
+	}
+}
+
 // TestIsDateInFuture
 func TestIsDateInFuture(t *testing.T) {
 	if tareekh.IsDateInFuture(tareekh.Now().AddDate(0, 0, -1)) {

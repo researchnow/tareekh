@@ -80,6 +80,11 @@ func IsDateInFuture(t time.Time) bool {
 	return Now().Sub(t).Hours() < 0
 }
 
+// IsDateInPast returns true if the date is in past
+func IsDateInPast(t time.Time) bool {
+	return Now().Sub(t).Hours() > 0
+}
+
 // BeginningOfDay resets the time to 00:00:00 while keeping date intact
 func BeginningOfDay(t time.Time) time.Time {
 	hour := time.Duration(t.Hour()) * time.Hour
