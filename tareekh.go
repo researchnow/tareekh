@@ -77,7 +77,7 @@ func FromDateString(dt string) (time.Time, error) {
 
 // IsDateInFuture returns true if the date is in future
 func IsDateInFuture(t time.Time) bool {
-	return Now().Sub(t).Hours() < 0
+	return Now().After(t)
 }
 
 // IsDateInPast returns true if the date is in past
