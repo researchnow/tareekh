@@ -98,6 +98,11 @@ func DifferenceInDays(then, now time.Time) int {
 	diff := now.Sub(then)
 	return int(diff.Hours() / 24)
 }
+// DifferenceInHours returns the number of hours between two given dates.
+func DifferenceInHours(then, now time.Time) int {
+	diff := now.Sub(then)
+	return int(diff.Hours())
+}
 
 // DifferenceInSeconds returns the number of seconds between two given dates.
 func DifferenceInSeconds(then, now time.Time) int {
