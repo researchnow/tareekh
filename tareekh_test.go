@@ -191,3 +191,45 @@ func TestExtractEndOfMonth(t *testing.T) {
 		}
 	}
 }
+
+func TestDifferenceInHours(t *testing.T) {
+	tests := []struct {
+		Name string
+		Input1 string
+		Input2 string
+		Expected int
+	}{{
+		Name: "case 1: difference more than 0",
+		Input1: "2019/11/22 14:14:46",
+		Input2: "2019/11/22 18:14:46",
+		Expected: 4,
+	}, {
+		Name: "case 2: difference equals 0",
+		Input1: "2019/11/22 00:14:46",
+		Input2: "2019/11/22 00:14:46",
+		Expected: 0,
+	}, {
+		Name: "case 3: difference less than 0",
+		Input1: "2019/11/22 14:14:46",
+		Input2: "2019/11/22 12:14:46",
+		Expected: -2,
+	}}
+	for _, tt := range tests {
+		format := "2006/01/02 15:04:05"
+		input1, err := time.Parse(format, tt.Input1)
+		if err != nil {
+			t.Error(err)
+			t.FailNow()
+		}
+		input2, err := time.Parse(format, tt.Input2)
+		if err != nil {
+			t.Error(err)
+			t.FailNow()
+		}
+		actual := tareekh.DifferenceInHours(input1, input2)
+		if actual != tt.Expected {
+			t.Errorf("expected: %d, got: %d", tt.Expected, actual)
+			t.Fail()
+		}
+	}
+}

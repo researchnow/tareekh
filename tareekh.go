@@ -66,8 +66,8 @@ func ToShortDate(t time.Time) string {
 
 // FromDateString parses date string of format YYYY-MM-DD and returns time object
 func FromDateString(dt string) (time.Time, error) {
-	localizedFormat := fmt.Sprintf("%s %s", DefaultDateFormat, "MST")
 	zone, _ := Now().Zone()
+	localizedFormat := fmt.Sprintf("%s %s", DefaultDateFormat, zone)
 	t, err := time.Parse(localizedFormat, fmt.Sprintf("%s %s", dt, zone))
 	if err != nil {
 		return t, err
@@ -77,12 +77,12 @@ func FromDateString(dt string) (time.Time, error) {
 
 // IsDateInFuture returns true if the date is in future
 func IsDateInFuture(t time.Time) bool {
-	return Now().After(t)
+	return Now().Before(t)
 }
 
 // IsDateInPast returns true if the date is in past
 func IsDateInPast(t time.Time) bool {
-	return Now().Sub(t).Hours() > 0
+	return Now().After(t)
 }
 
 // BeginningOfDay resets the time to 00:00:00 while keeping date intact
