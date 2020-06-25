@@ -77,12 +77,12 @@ func FromDateString(dt string) (time.Time, error) {
 
 // IsDateInFuture returns true if the date is in future
 func IsDateInFuture(t time.Time) bool {
-	return Now().After(t)
+	return Now().Before(t)
 }
 
 // IsDateInPast returns true if the date is in past
 func IsDateInPast(t time.Time) bool {
-	return Now().Sub(t).Hours() > 0
+	return Now().After(t)
 }
 
 // BeginningOfDay resets the time to 00:00:00 while keeping date intact
@@ -98,6 +98,7 @@ func DifferenceInDays(then, now time.Time) int {
 	diff := now.Sub(then)
 	return int(diff.Hours() / 24)
 }
+
 // DifferenceInHours returns the number of hours between two given dates.
 func DifferenceInHours(then, now time.Time) int {
 	diff := now.Sub(then)
