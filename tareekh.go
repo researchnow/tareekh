@@ -67,6 +67,7 @@ func ToShortDate(t time.Time) string {
 // FromDateString parses date string of format YYYY-MM-DD and returns time object
 func FromDateString(dt string) (time.Time, error) {
 	localizedFormat := fmt.Sprintf("%s %s", DefaultDateFormat, "MST")
+	zone, _ := Now().Zone()
 	t, err := time.Parse(localizedFormat, fmt.Sprintf("%s %s", dt, zone))
 	if err != nil {
 		return t, err
