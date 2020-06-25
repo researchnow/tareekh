@@ -66,8 +66,7 @@ func ToShortDate(t time.Time) string {
 
 // FromDateString parses date string of format YYYY-MM-DD and returns time object
 func FromDateString(dt string) (time.Time, error) {
-	zone, _ := Now().Zone()
-	localizedFormat := fmt.Sprintf("%s %s", DefaultDateFormat, zone)
+	localizedFormat := fmt.Sprintf("%s %s", DefaultDateFormat, "MST")
 	t, err := time.Parse(localizedFormat, fmt.Sprintf("%s %s", dt, zone))
 	if err != nil {
 		return t, err
@@ -98,6 +97,7 @@ func DifferenceInDays(then, now time.Time) int {
 	diff := now.Sub(then)
 	return int(diff.Hours() / 24)
 }
+
 // DifferenceInHours returns the number of hours between two given dates.
 func DifferenceInHours(then, now time.Time) int {
 	diff := now.Sub(then)
