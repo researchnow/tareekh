@@ -52,6 +52,10 @@ func EndOfMonth() time.Time {
 func DaysAgo(days int) time.Time {
 	return Today().AddDate(0, 0, -1*days)
 }
+// DaysAfter returns time for specified number of days forward
+func DaysAfter(days int) time.Time {
+	return Today().AddDate(0, 0, days)
+}
 
 // FromDayOfMonth return time object set to specified day of the current month
 func FromDayOfMonth(day int) time.Time {

@@ -100,6 +100,15 @@ func TestDaysAgo(t *testing.T) {
 		t.FailNow()
 	}
 }
+// TestDaysAfter
+func TestDaysAfter(t *testing.T) {
+	today := tareekh.Today()
+	after := tareekh.DaysAfter(6)
+	diff := today.Day() - after.Day()
+	if diff != -6 {
+		t.FailNow()
+	}
+}
 
 // TestBeginningOfDay
 func TestBeginningOfDay(t *testing.T) {
